@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request
-from dotenv import load_dotenv
+from dotenv import load_dotenv 
+from openai import OpenAI
 import os
 from repository import MessageRepository
+from openAI import OpenAIRepository
 
 load_dotenv()
 
@@ -11,6 +13,12 @@ page_access_tkn = os.getenv('PAGE_ACCESS_TOKEN')
 verify_token = os.getenv('VERIFY_TOKEN')
 
 message_repository = MessageRepository(page_access_tkn)
+
+
+
+
+
+
 
 @app.route('/')
 def index():
