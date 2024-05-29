@@ -92,6 +92,6 @@ class OpenAIRepository:
 
 message = 'Hello'
 
-repository = OpenAIRepository()
-response_message = repository.connectAi(apiToken, message, assistant_ID)
-print(f'Response message: {response_message}')
+# repository = OpenAIRepository()
+# response_message = repository.connectAi(apiToken, message, assistant_ID)
+# print(f'Response message: {response_message}')
