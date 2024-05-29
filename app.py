@@ -11,14 +11,10 @@ app = Flask(__name__)
 
 page_access_tkn = os.getenv('PAGE_ACCESS_TOKEN')
 verify_token = os.getenv('VERIFY_TOKEN')
-
+openai_tkn = os.getenv('OPENAI_API_TOKEN')
+assistant_id = os.getenv('ASSISTANT_ID')
 message_repository = MessageRepository(page_access_tkn)
-
-
-
-
-
-
+openai_repo = OpenAIRepository()
 
 @app.route('/')
 def index():
@@ -42,8 +38,12 @@ def webhook():
                     if 'message' in messaging_event:
                         sender_id = messaging_event['sender']['id']
                         message_text = messaging_event['message'].get('text')
-                        if message_text:
-                            message_repository.send_message(sender_id, message_text)
+                        response_message = openai_repo.connectAi(openai_tkn, message_text, assistant_id)
+
+                        if response_message:
+                            
+                            message_repository.send_message(sender_id, response_message)
+
         else:
             print("Invalid payload structure:", data)
 
