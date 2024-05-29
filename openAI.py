@@ -90,7 +90,9 @@ class OpenAIRepository:
 
 
 
-message = 'Hello'
+apiToken = os.getenv("OPENAI_API_TOKEN")
+message = os.getenv("ASSISTANT_ID")
+assistant_ID = 'asst_jm8jRCaQ9S6WKelXbSJgfvDs'
 
 repository = OpenAIRepository()
 response_message = repository.connectAi(apiToken, message, assistant_ID)
